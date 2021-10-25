@@ -48,6 +48,80 @@ void MaxHeap::createMaxHeap() const
 		elements_[parent] = temp;
 	}
 
+	//作为哨兵 只要比最大元素大就行
+	elements_[0] = elements_[1] + 10;
+
+}
+
+void MaxHeap::insertElement(int num)
+{
+	// 将当前元素插入到 最后一个位置 
+	// 判断是否已经满了
+	if(isFull())
+	{
+		std::cout << "插入失败,没有额外的空间!" << std::endl;
+	}
+
+	// 重新修改哨兵 
+	if(num > elements_[0])
+	{
+		elements_[0] = num+10;
+	}
+	// index 指向插入的新元素
+	int index = ++size_;
+
+	// 从当前index位置开始向上检索，更新树中数据的顺序 
+	for(;elements_[index/2] < num;index = index / 2)
+	{
+		elements_[index] = elements_[index / 2];  // 将当前元素父节点的元素下移
+	}
+	elements_[index] = num;  // num 最终放在此位置
+
+}
+
+int MaxHeap::deleteMax()
+{
+	int parent, child;
+	int max_child, temp;
+	if(isEmpty())
+	{
+		std::cout << "堆为空" << std::endl;
+		return -elements_[0];  // 返回此结果表示 当前删除失败 
+	}
+
+	max_child = elements_[1];
+	temp = elements_[size_--];   // 取出最后一个元素
+
+	for(parent = 1; parent * 2 < size_;parent = child)
+	{
+		child = 2 * parent;
+		if((child != size_) && (elements_[child] < elements_ [child + 1]))
+		{
+			child++;
+		}
+		if(temp > elements_[child])
+		{
+			break;
+		}
+		else
+		{
+			elements_[parent] = elements_[child];  // 用更大的元素替换根元素
+		}
+
+	}
+	elements_[parent] = temp;
+
+	return max_child;
+}
+
+bool MaxHeap::isFull() const
+{
+	return size_ == capacity_;
+}
+
+bool MaxHeap::isEmpty() const
+{
+	return !size_;
 }
 
 // 输出堆的最大个数
@@ -62,6 +136,7 @@ void MaxHeap::printData() const
 	for(int index = 1;index < size_+1 ;index++)
 	{
 		std::cout << *(elements_ + index) << " ";
-		std::cout<< std::endl;
 	}
+	std::cout << std::endl;
+
 }

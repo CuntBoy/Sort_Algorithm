@@ -10,7 +10,14 @@ public:
 	// 数据 当前数据的个数 堆的大小(存储的元素的个数的上限)
 	MaxHeap(const int * data,int size,int capacity);
 
-	void createMaxHeap() const; 
+	void createMaxHeap() const;
+	void insertElement(int num);
+	int deleteMax();
+
+	// 判断数据是否已满 
+	bool isFull() const;
+	// 判空
+	bool isEmpty() const;
 
 	// test function
 	void printSize() const;
@@ -21,6 +28,7 @@ protected:
 	int size_;     // 当前元素的个数
 	int capacity_; // 堆的最大容量
 
+	
 
 };
 
