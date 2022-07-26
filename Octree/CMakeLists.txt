@@ -1,8 +1,9 @@
-SET(target_name OctTree)
+SET(target_name Octree)
 project(${target_name})
 
 SET(CPP_FILES
 	main.cpp
+	Octree.hpp
 
 )
 

@@ -7,4 +7,4 @@ SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 add_subdirectory(heap)
 add_subdirectory(topology)
-add_subdirectory(OctTree)
+add_subdirectory(Octree)
