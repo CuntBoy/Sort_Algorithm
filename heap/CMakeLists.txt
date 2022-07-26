@@ -1,4 +1,4 @@
-SET(target_name heap_)
+SET(target_name Maxheap)
 project(${target_name})
 
 SET(CPP_FILES

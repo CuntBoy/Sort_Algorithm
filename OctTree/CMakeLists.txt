@@ -1,4 +1,4 @@
-SET(target_name topology)
+SET(target_name OctTree)
 project(${target_name})
 
 SET(CPP_FILES
